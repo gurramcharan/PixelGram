@@ -9,9 +9,9 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1559608622-d443df453289?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2VsZiUyMGxvdmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80",
     media_type: "image",
-    content: "To fall in love with yourself is the first secret to happiness.",
+    content: "NASA's stunning image captures Earth's delicate beauty from space, showcasing the vibrant blue planet cradled by the protective embrace of the ozone layer.",
     likes: {
       likeCount: 32,
       likedBy: [],
@@ -28,15 +28,15 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "https://images.news18.com/ibnlive/uploads/2023/08/pm-modi--16920749743x2.jpg?impolicy=website&width=510&height=356",
     media_type: "image",
-    content: "Escape the ordinary and stay crazy",
+    content: "Independence Day 2023: India Working On 6G Launch, 'Task Force' Created, Says PM Modi",
     likes: {
       likeCount: 23,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "koshi@12",
+    username: "anju_123",
     createdAt_format: new Intl.DateTimeFormat("en-GB", {
       dateStyle: "long",
       timeZone: "Australia/Sydney",
@@ -47,16 +47,16 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1615224299941-04a854c101d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "https://www.hindustantimes.com/ht-img/img/2023/08/09/550x309/earth_1691575027071_1691575027664.png",
     media_type: "image",
     content:
-      "A recipe has no soul. You, as the cook, must bring the soul to the recipe ",
+      "Chandrayaan-3 gets closer to Moon after fourth orbit reduction manoeuvre",
     likes: {
       likeCount: 104,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "koshi@12",
+    username: "anju_123",
     createdAt_format: new Intl.DateTimeFormat("en-GB", {
       dateStyle: "long",
       timeZone: "Australia/Sydney",
@@ -67,15 +67,15 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1610928712141-a292b96f43e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "https://images.unsplash.com/photo-1616499370260-485b3e5ed653?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     media_type: "image",
-    content: "You must be the change you wish to see in the world....",
+    content: "Google Confirms It Doesn't Use User Data To Train AI Models Without Consent",
     likes: {
       likeCount: 9,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "loga@1612",
+    username: "emmi",
     createdAt_format: new Intl.DateTimeFormat("en-GB", {
       dateStyle: "long",
       timeZone: "Australia/Sydney",
@@ -87,15 +87,15 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "https://imgeng.jagran.com/images/2023/aug/elon-musk-vs-mark-zuckerberg16877842769231691945604341.jpg",
     media_type: "image",
-    content: "A fit body, a calm mind, a house full of love ",
+    content: "'Knock, Knock...': Elon Musk Accepts Mark Zuckerberg's Challenge For Cage Fight",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "emmy@09",
+    username: "anil@2002",
     createdAt_format: new Intl.DateTimeFormat("en-GB", {
       dateStyle: "long",
       timeZone: "Australia/Sydney",
@@ -106,16 +106,16 @@ export const posts = [
   {
     _id: uuid(),
     post_img:
-      "https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "https://images.unsplash.com/photo-1678483789107-0029c61fdcca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1856&q=80",
     media_type: "image",
     content:
-      "Find the Prospective that transforms the ordinary into the extraordinary",
+      "ChatGPT Creator OpenAI Says AI Tools Can Be Effective In Content Moderation",
     likes: {
       likeCount: 20,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "emmi@09",
+    username: "virat@18",
     createdAt_format: new Intl.DateTimeFormat("en-GB", {
       dateStyle: "long",
       timeZone: "Australia/Sydney",

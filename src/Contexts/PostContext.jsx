@@ -21,7 +21,7 @@ export default function Postprovider({children}) {
     const [postState,
         postDispatch] = useReducer(postReducer, postInitial);
 
-    //api call to fetch all posts
+    //All post fetch
     const getAllPosts = async() => {
         postDispatch({type: "loading_post", payload: true});
         const response = await axios.get("/api/posts", {headers: curr_token});
@@ -31,7 +31,7 @@ export default function Postprovider({children}) {
         }
     };
 
-    //api call to fetch posts of active user
+    //Active user posts fetch
     const getcurruserPost = async(us) => {
         postDispatch({type: "loading_post", payload: true});
         try {
@@ -40,13 +40,12 @@ export default function Postprovider({children}) {
             if (response.status === 200) {
                 postDispatch({type: "set_curr_user_post", payload: temp.posts});
             }
-            //console.log(temp);
         } catch (error) {
             console.log("error in fetching curr user post", error);
         }
     };
 
-    //api call for creating the post
+    //Creating a Post
     const createPost = async(e, posttext, reset) => {
         e.preventDefault();
         const postMessage = e.target.elements.post_text.value;
@@ -54,8 +53,7 @@ export default function Postprovider({children}) {
         postDispatch({type: "loading_post", payload: true});
 
         try {
-            const media_info = await createMediaURL(postmedia);
-            //console.log(media_info?.name, media_info?.type);
+            // const media_info = await createMediaURL(postmedia);
             const response = await fetch("/api/posts", {
                 method: "POST",
                 headers: {
@@ -64,13 +62,12 @@ export default function Postprovider({children}) {
                 body: JSON.stringify({
                     postData: {
                         content: postMessage,
-                        post_img: media_info.name,
-                        media_type: media_info.type
+                        // post_img: media_info.name,
+                        // media_type: media_info.type
                     }
                 })
             });
             const temp = await response.json();
-            //console.log(temp.posts);
             if (response.status === 201) {
                 postDispatch({type: "loading_post", payload: false});
                 postDispatch({type: "set_post", payload: temp.posts});
@@ -94,7 +91,7 @@ export default function Postprovider({children}) {
         }
     };
 
-    //api call to like a post
+    //Like a post
     const LikePost = async(id) => {
         postDispatch({type: "loading_post", payload: true});
         try {
@@ -108,7 +105,6 @@ export default function Postprovider({children}) {
             if (response.status === 201) {
                 postDispatch({type: "loading_post", payload: false});
                 const temp = await response.json();
-                //console.log(temp);
                 postDispatch({type: "set_post", payload: temp.posts});
             }
         } catch (error) {
@@ -116,7 +112,7 @@ export default function Postprovider({children}) {
         }
     };
 
-    //api call to unlike a post
+    //Dislike a post
     const DislikePost = async(id) => {
         postDispatch({type: "loading_post", payload: true});
         try {
@@ -136,7 +132,7 @@ export default function Postprovider({children}) {
         }
     };
 
-    //api call to delete a post
+    //Delete a post
     const postDelete = async(id) => {
         postDispatch({type: "loading_post", payload: false});
 
@@ -157,12 +153,8 @@ export default function Postprovider({children}) {
         }
     };
 
-    //api call to edit a post
-
+    //Post Edit
     const postEdit = async(id, content) => {
-        console.log("Hii")
-        // const temp = e.target.elements.postContent.value
-        // console.log(temp)
         try {
             const response = await fetch(`/api/posts/edit/${id}`, {
                 method: "POST",
@@ -184,55 +176,55 @@ export default function Postprovider({children}) {
 
 
 
-    const ValidatePostMedia = (media) => {
-        const mediaType = media
-            .type
-            .split("/")[0];
-        const mediaSize = media.size;
-        if (!(mediaType === "video" || mediaType === "image")) {
-            return {isValid: false, message: "Only image or video files are allowed"};
-        } else if (mediaType === "video" && mediaSize / 1024000 > 9.5) {
-            return {isValid: false, message: "Video size must be less than 10MB..."};
-        } else if (mediaType === "image" && mediaSize / 1024000 > 4) {
-            return {isValid: false, message: "Image size must be less than 4MB..."};
-        } else {
-            return {isValid: true, message: "valid"};
-        }
-    };
+    // const ValidatePostMedia = (media) => {
+    //     const mediaType = media
+    //         .type
+    //         .split("/")[0];
+    //     const mediaSize = media.size;
+    //     if (!(mediaType === "video" || mediaType === "image")) {
+    //         return {isValid: false, message: "Only image or video files are allowed"};
+    //     } else if (mediaType === "video" && mediaSize / 1024000 > 9.5) {
+    //         return {isValid: false, message: "Video size must be less than 10MB..."};
+    //     } else if (mediaType === "image" && mediaSize / 1024000 > 4) {
+    //         return {isValid: false, message: "Image size must be less than 4MB..."};
+    //     } else {
+    //         return {isValid: true, message: "valid"};
+    //     }
+    // };
 
-    const createMediaURL = async(media) => {
-        //console.log(media, "media");
-        if (media.name === undefined || media.name.length === 0 || media.type === undefined) {
-            return "";
-        }
-        const mediaType = media
-            .type
-            .split("/")[0];
-        const formData = new FormData();
-        formData.append("file", media);
-        formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
-        formData.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-        try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/${mediaType}/upload`, {
-                method: "POST",
-                body: formData
-            });
+    // const createMediaURL = async(media) => {
+    //     //console.log(media, "media");
+    //     if (media.name === undefined || media.name.length === 0 || media.type === undefined) {
+    //         return "";
+    //     }
+    //     const mediaType = media
+    //         .type
+    //         .split("/")[0];
+    //     const formData = new FormData();
+    //     formData.append("file", media);
+    //     formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
+    //     formData.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+    //     try {
+    //         const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/${mediaType}/upload`, {
+    //             method: "POST",
+    //             body: formData
+    //         });
 
-            const temp = await response.json();
-            //  console.log(temp);
-            const {secure_url} = temp;
+    //         const temp = await response.json();
+    //         const {secure_url} = temp;
 
-            const return_value = {
-                name: secure_url,
-                type: mediaType
-            };
-            console.log(return_value);
-            return return_value;
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    //api call to sort  based on trending post
+    //         const return_value = {
+    //             name: secure_url,
+    //             type: mediaType
+    //         };
+    //         console.log(return_value);
+    //         return return_value;
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+    //Trending post sort
     const TrendingHandler = () => {
         const temp = postState
             .allpost
@@ -240,12 +232,11 @@ export default function Postprovider({children}) {
         return postDispatch({type: "set_post", payload: temp});
     };
 
-    //api call to sort based on latest upload
+    //Late post based on date sort
     const LatestHandler = () => {
         const temp = postState
             .allpost
             .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
-        console.log(temp)
 
         return postDispatch({type: "set_post", payload: temp});
     };
@@ -258,7 +249,7 @@ export default function Postprovider({children}) {
     useEffect(() => {
         getAllPosts();
     }, []);
-    //  console.log("postloading",postState.isPostLoading)
+
     return (
         <PostContext.Provider
             value={{
@@ -277,8 +268,8 @@ export default function Postprovider({children}) {
             getcurruserPost,
             edittext,
             setEdittext,
-            ValidatePostMedia,
-            createMediaURL
+            // ValidatePostMedia,
+            // createMediaURL
         }}>
             {children}
         </PostContext.Provider>

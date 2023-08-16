@@ -30,24 +30,22 @@ export const AuthProvider = ({children}) => {
   const [authState, authDispatch] = useReducer(authReducer, authInitial);
 
 
-  //logout function
+  //Logout
   const Logout = () => {
     authDispatch({ type: "set_token", payload: "" });
     authDispatch({ type: "set_user", payload: {} });
     localStorage.removeItem("data");
     localStorage.removeItem("curr_user");
-    // authDispatch({ type: "set_avatar", payload: "" });
     ReactToastify("Logged out", "error");
   };
   useEffect(() => {}, [authState]);
 
-  //checks if user is Logged out
+  //check login function
   const CheckLogin = () => {
-    //console.log("inside check login")
     return localStorage.getItem("data") ? true : false;
   };
 
-  //user login function
+  //Login
   const Login = async (userdata) => {
     try {
       console.log(userdata);
@@ -66,7 +64,6 @@ export const AuthProvider = ({children}) => {
           "curr_user",
           JSON.stringify(response.data?.foundUser)
         );
-        //  SetToken(response.data.encodedToken);
         authDispatch({ type: "set_loading", payload: false });
         authDispatch({
           type: "set_token",
@@ -86,7 +83,7 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  //user signup function
+  //Signup
   const SignUp = async (SignUpData) => {
     try {
       authDispatch({ type: "set_loading", payload: true });
@@ -121,7 +118,7 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  //follow a user
+  //Follow
   const followUser = async (id) => {
     authDispatch({ type: "set_loading", payload: true });
     try {
@@ -130,17 +127,9 @@ export const AuthProvider = ({children}) => {
         headers: { authorization: curr_token },
       });
       const temp = await response.json();
-    // const temp1 = userstate.users.reduce((acc, curr) => {
-    //     return curr.username === temp.followUser.username
-    //       ? [...temp1, followUser]
-    //       : [...temp1];
-    //   });
-    //   console.log(temp);
-    //   console.log(temp1);
       if (response.status === 200) {
         authDispatch({ type: "set_user", payload: temp.user });
         localStorage.setItem("curr_user", JSON.stringify(temp.user));
-        //userDispatch({ type: "set_users", payload: temp1 });
         authDispatch({ type: "set_loading", payload: false });
         ReactToastify(`followed ${temp.followUser.username}`, "info");
       }
@@ -156,7 +145,7 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  //unfollow a user
+  //Unfollow
   const UnfollowUser = async (id) => {
     authDispatch({ type: "set_loading", payload: true });
 
@@ -166,7 +155,6 @@ export const AuthProvider = ({children}) => {
         headers: { authorization: curr_token },
       });
       const temp = await response.json();
-      //console.log(temp);
       if (response.status === 200) {
         authDispatch({ type: "set_user", payload: temp.user });
         localStorage.setItem("curr_user", JSON.stringify(temp.user));

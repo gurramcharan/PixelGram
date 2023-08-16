@@ -24,10 +24,10 @@ export default function UserProvider({ children }) {
   const [userstate, userDispatch] = useReducer(userReducer, userInitial);
   const [filteredusers, setFilteredusers] = useState([]);
   
+  //Get all users
   const getallusers = async () => {
     try {
       const response = await axios.get("/api/users", {});
-      //console.log(response)
       userDispatch({ type: "user_loading", payload: true });
       if (response.status === 200) {
         userDispatch({ type: "set_users", payload: response.data.users });
@@ -39,12 +39,12 @@ export default function UserProvider({ children }) {
     }
   };
 
+  //Edit user
   const EditUser = async (e) => {
     e.preventDefault();
     const profile = e.target.elements?.user_portfolio.value;
     const bio = e.target.elements?.user_bio.value;
     const avatar = e.target.src;
-    //console.log("inside context", avatar);
     try {
       userDispatch({ type: "user_loading", payload: true });
 
@@ -53,9 +53,7 @@ export default function UserProvider({ children }) {
         headers: { authorization: curr_token },
         body: JSON.stringify({ userData: { bio, profile, avatar } }),
       });
-      //console.log(userstate);
       const temp = await response.json();
-      //console.log(temp);
       if (response.status === 201) {
         userDispatch({ type: "set_bio", payload: temp.user.bio });
         userDispatch({ type: "set_portfolio", payload: temp.user.profile });
@@ -65,7 +63,6 @@ export default function UserProvider({ children }) {
         localStorage.setItem("curr_user", JSON.stringify(temp.user));
         ReactToastify("Profile updated", "success");
       }
-      //console.log(temp);
     } catch (error) {
       console.log(error);
     }

@@ -16,6 +16,8 @@ export default function BookmarkProvider({ children }) {
     boookmarkReducer,
     bookmarkInitial
   );
+
+  //Add Bookmark
   const addToBookmark = async (id) => {
     try {
       const response = await fetch(`/api/users/bookmark/${id}`, {
@@ -23,7 +25,6 @@ export default function BookmarkProvider({ children }) {
         headers: { authorization: curr_token },
       });
       const temp = await response.json();
-        //console.log(temp)
       if (response.status === 200) {
         ReactToastify("Added to Bookmark", "info");
         bookmarkDispatch({
@@ -37,6 +38,8 @@ export default function BookmarkProvider({ children }) {
       error?.response?.data?.errors?.map((e) => ReactToastify(e, "error"));
     }
   };
+
+  //Remove Bookmark
   const removeFromBookmark = async (id) => {
     try {
       const response = await fetch(`/api/users/remove-bookmark/${id}`, {
@@ -44,7 +47,6 @@ export default function BookmarkProvider({ children }) {
         headers: { authorization: curr_token },
       });
       console.log(response.status);
-      //console.log(await response.json());
       const temp = await response.json();
       bookmarkDispatch({
         type: "curr_user_bookmark",
